@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+    <h1 class="ui center aligned header">TODO APP</h1>
+    <div style="margin-top: 50px;" class="ui container">
+        <form class="ui form" action="/add" method="POST">
+            <label class="ui ribbon label" for="add">Todo Title</label>
+            <input type="text" name="title" placeholder="Enter todo....">
+            <br>
+            <button class="ui blue button" type="submit">ADD</button>
+            {%for data in data%}
+            <div class="ui segment">   
+                <p class="ui big header">{{ data.id }}->{{ data.title }}</p>
+                {%if data.complete %}
+                    <span class="ui green label">Completed</span>
+                {%else%}
+                    <span class="ui black label">Not Completed</span>
+                {%endif%} 
+                <a class="ui blue button" href="/update/{{data.id}}">Update</a>
+                <a class="ui red button" href="/delete/{{data.id}}">Delete</a>  
+                {%endfor%}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
